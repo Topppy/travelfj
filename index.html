@@ -89,7 +89,7 @@
 
 <body>
   <h3>小傅菁去旅行的第N天</br>给空巢老人寄来了明信片</h3>
-  <img id="re" />
+  <img id="re" download=“travelfj.png”/>
   <p>长按照片保存或右键点击图片保存</p>
   <div id="roll">查看小傅菁的明信片</div>
 </body>
@@ -210,7 +210,6 @@
   window.addEventListener('load', () => {
     const reImg = document.querySelector("#re")
     const roll = document.querySelector("#roll")
-    // generateCard(reImg)
     roll.addEventListener('click', () => {
       if (!inited) {
         document.querySelector('p').className='show'
