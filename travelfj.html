@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>travel fj</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    h3, p {
+      text-align: center;
+    }
+    p {
+      display: none;
+      color: #d1d1d1;
+    }
+    .show {
+      display: block;
+    }
+
+    #re {
+      display: block;
+      width: 100%;
+    }
+    #roll {
+      width: 270px;
+      padding: 20px;
+      margin: 50px auto;
+      border: 1px solid #d1d1d1;
+      -webkit-animation: breathing 7s ease-out infinite normal;
+      animation: breathing 7s ease-out infinite normal;
+      font-size: 24px;
+      background: #5885cb;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      border-radius: 3px;
+      text-align: center;
+    }
+
+    @-webkit-keyframes breathing {
+      0% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+      }
+
+      25% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+
+      60% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+      }
+
+      100% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+      }
+    }
+
+    @keyframes breathing {
+      0% {
+        -webkit-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        transform: scale(0.9);
+      }
+
+      25% {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+      }
+
+      60% {
+        -webkit-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        transform: scale(0.9);
+      }
+
+      100% {
+        -webkit-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+        transform: scale(0.9);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h3>小傅菁去旅行的第N天</br>给空巢老人寄来了明信片</h3>
+  <img id="re" />
+  <p>长按照片保存或右键点击图片保存</p>
+  <div id="roll">查看小傅菁的明信片</div>
+</body>
+<script>
+  const W = 600
+  const H = 420
+  const FW = 120
+  const inited = false;
+  const bgList = [
+    "./bg/193-1P11Q50303.jpg",
+    "./bg/193-1P11Q50304.jpg",
+    "./bg/193-1P11Q50304-50.jpg",
+    "./bg/193-1P11Q50305.jpg",
+    "./bg/193-1P11Q50306.jpg",
+    "./bg/193-1P11Q50306-50.jpg",
+    "./bg/193-1P11Q50307.jpg",
+    "./bg/193-1P11Q50308.jpg",
+    "./bg/193-1P11Q50308-50.jpg",
+    "./bg/193-1P11Q50308-50.jpg",
+    "./bg/193-1P11Q50309.jpg",
+    "./bg/193-1P11Q50310.jpg",
+    "./bg/193-1P11Q50310-50.jpg",
+    "./bg/193-1P11Q50310-50.jpg",
+    "./bg/193-1P11Q50311.jpg",
+    "./bg/193-1P11Q50311-50.jpg",
+    "./bg/193-1P11Q50312.jpg",
+    "./bg/193-1P11Q50312-50.jpg",
+    "./bg/193-1P11Q50313.jpg",
+    "./bg/193-1P11Q50314.jpg",
+    "./bg/193-1P11Q50314-50.jpg",
+    "./bg/193-1P11Q50315.jpg",
+    "./bg/193-1P11Q50315-50.jpg",
+    "./bg/193-1P11Q50316.jpg",
+    "./bg/193-1P11Q50317.jpg",
+    "./bg/193-1P11Q50317-50.jpg",
+    "./bg/193-1P11Q50318.jpg",
+    "./bg/193-1P11Q50318-50.jpg",
+    "./bg/193-1P11Q50319.jpg",
+    "./bg/193-1P11Q50320.jpg",
+    "./bg/193-1P11Q50320-50.jpg",
+    "./bg/193-1P11Q50321.jpg",
+    "./bg/193-1P11Q50321-50.jpg",
+    "./bg/193-1P11Q50322.jpg",
+    "./bg/193-1P11Q50322-50.jpg",
+    "./bg/193-1P11Q50323.jpg"
+  ]
+  fjList = [
+    './fj/t-fj-1.png',
+    './fj/f-fj-2.png',
+    './fj/f-fj-3.png',
+    './fj/f-fj-4.png',
+  ]
+  pats = [
+    './pat/dog.png',
+  ]
+
+  function createCan([bg, fj, dog]) {
+    const c = document.createElement('canvas')
+    // const c = document.querySelector('#can')
+    const ctx = c.getContext('2d');
+    c.width = W
+    c.height = H
+    const x = random(0.1 * W, 0.8 * W)
+    const y = random(0.4 * H, 0.6 * H)
+    const FH = (FW * fj.height / fj.width)
+    ctx.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width, bg.height);
+    ctx.drawImage(fj, 0, 0, fj.width, fj.height, x, y, FW, FH);
+    if (dog) {
+      ctx.drawImage(dog, 0, 0, dog.width, dog.height, x - 0.5 * FW, y + 0.4 * FH, 0.7 * FW, 0.7 * (FW * dog.height /
+        dog.width));
+    }
+    return c
+  }
+
+  function random(lower, upper) {
+    return Math.floor(Math.random() * (upper - lower + 1)) + lower;
+  }
+
+  function getImgs() {
+    const bgLen = bgList.length - 1
+    const fjLen = fjList.length - 1
+    hasDog = random(0, 1) > 0.5
+    const imgs = [
+      bgList[random(0, bgLen)],
+      fjList[random(0, fjLen)],
+    ]
+    if (hasDog) {
+      imgs.push(pats[0])
+    }
+    return imgs
+  }
+
+  function getImgPrms(url) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        console.log('resolve')
+        resolve(img);
+      };
+      img.onerror = (err) => {
+        console.log('reject')
+        reject(err);
+      };
+      img.src = url;
+    })
+  }
+
+  function generateCard(re) {
+    const imgGroup = getImgs()
+
+    Promise.all(imgGroup.map((imgUrl) => getImgPrms(imgUrl))).then(([bg, fj, dog]) => {
+      const mergedCan = createCan([bg, fj, dog])
+      re.src = mergedCan.toDataURL('image/png');
+    })
+  }
+
+  window.addEventListener('load', () => {
+    const reImg = document.querySelector("#re")
+    const roll = document.querySelector("#roll")
+    // generateCard(reImg)
+    roll.addEventListener('click', () => {
+      if (!inited) {
+        document.querySelector('p').className='show'
+      }
+      generateCard(reImg)
+    })
+  })
+
+</script>
+
+</html>
