@@ -90,8 +90,7 @@
 <body>
   <h3>小傅菁去旅行的第N天</br>给空巢老人寄来了明信片</h3>
   <img id="re" download=“travelfj.png”/>
-  <a id="download" download=“travelfj.png” href=''></a>
-  <p>长按照片保存或右键点击图片保存</p>
+  <p>长按照片保存或右键点击图片保存</br>（微博内置浏览器不支持长按保存，请在safari中打开）</p>
   <div id="roll">查看小傅菁的明信片</div>
 </body>
 <script>
@@ -217,10 +216,6 @@
         document.querySelector('p').className='show'
       }
       generateCard(reImg)
-    })
-    re.addEventListener('click', () => {
-      down.href = reImg.src
-      down.click()
     })
   })
 
