@@ -7,13 +7,17 @@
   <title>travel fj</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    h3, p {
+    h3,
+    p {
       text-align: center;
     }
-    p, a{
+
+    p,
+    a {
       display: none;
       color: #d1d1d1;
     }
+
     .show {
       display: block;
     }
@@ -22,6 +26,7 @@
       display: block;
       width: 100%;
     }
+
     #roll {
       width: 270px;
       padding: 20px;
@@ -35,6 +40,58 @@
       -webkit-font-smoothing: antialiased;
       border-radius: 3px;
       text-align: center;
+    }
+
+    #block {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      line-height: 100vh;
+      text-align: center;
+      z-index: 100;
+    }
+
+    #block.show {
+      display: block;
+    }
+
+    .load-3 .line:nth-last-child(1) {
+      animation: loadingC .6s .1s linear infinite;
+    }
+
+    .load-3 .line:nth-last-child(2) {
+      animation: loadingC .6s .2s linear infinite;
+    }
+
+    .load-3 .line:nth-last-child(3) {
+      animation: loadingC .6s .3s linear infinite;
+    }
+
+    @keyframes loadingC {
+      0 {
+        transform: translate(0, 0);
+      }
+
+      50% {
+        transform: translate(0, 15px);
+      }
+
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+
+    .line {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border-radius: 15px;
+      background-color: #fff;
     }
 
     @-webkit-keyframes breathing {
@@ -88,8 +145,15 @@
 </head>
 
 <body>
+  <div id="block">
+    <div class="load-3">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+  </div>
   <h3>小傅菁去旅行的第N天</br>给空巢老人寄来了明信片</h3>
-  <img id="re" download=“travelfj.png”/>
+  <img id="re" download=“travelfj.png” />
   <p>长按照片保存或右键点击图片保存</br>（微博内置浏览器不支持长按保存，请在safari中打开）</p>
   <div id="roll">查看小傅菁的明信片</div>
 </body>
@@ -99,126 +163,145 @@
   const FW = 120
   const inited = false;
   const bgList = [
-    "./bg/193-1P11Q50303.jpg",
     "./bg/193-1P11Q50304.jpg",
-    "./bg/193-1P11Q50304-50.jpg",
-    "./bg/193-1P11Q50305.jpg",
-    "./bg/193-1P11Q50306.jpg",
     "./bg/193-1P11Q50306-50.jpg",
+    "./bg/193-1P11Q50306.jpg",
     "./bg/193-1P11Q50307.jpg",
     "./bg/193-1P11Q50308.jpg",
-    "./bg/193-1P11Q50308-50.jpg",
-    "./bg/193-1P11Q50308-50.jpg",
     "./bg/193-1P11Q50309.jpg",
-    "./bg/193-1P11Q50310.jpg",
     "./bg/193-1P11Q50310-50.jpg",
-    "./bg/193-1P11Q50310-50.jpg",
-    "./bg/193-1P11Q50311.jpg",
     "./bg/193-1P11Q50311-50.jpg",
-    "./bg/193-1P11Q50312.jpg",
+    "./bg/193-1P11Q50311.jpg",
     "./bg/193-1P11Q50312-50.jpg",
-    "./bg/193-1P11Q50313.jpg",
-    "./bg/193-1P11Q50314.jpg",
+    "./bg/193-1P11Q50312.jpg",
     "./bg/193-1P11Q50314-50.jpg",
-    "./bg/193-1P11Q50315.jpg",
+    "./bg/193-1P11Q50314.jpg",
     "./bg/193-1P11Q50315-50.jpg",
-    "./bg/193-1P11Q50316.jpg",
-    "./bg/193-1P11Q50317.jpg",
+    "./bg/193-1P11Q50315.jpg",
     "./bg/193-1P11Q50317-50.jpg",
-    "./bg/193-1P11Q50318.jpg",
     "./bg/193-1P11Q50318-50.jpg",
+    "./bg/193-1P11Q50318.jpg",
     "./bg/193-1P11Q50319.jpg",
-    "./bg/193-1P11Q50320.jpg",
     "./bg/193-1P11Q50320-50.jpg",
-    "./bg/193-1P11Q50321.jpg",
+    "./bg/193-1P11Q50320.jpg",
     "./bg/193-1P11Q50321-50.jpg",
-    "./bg/193-1P11Q50322.jpg",
+    "./bg/193-1P11Q50321.jpg",
     "./bg/193-1P11Q50322-50.jpg",
-    "./bg/193-1P11Q50323.jpg"
+    "./bg/193-1P11Q50322.jpg",
+    "./bg/193-1P11Q50323.jpg",
+    "./bg/SHOUTAO_2018-12-07_19-45-50.jpg",
+    "./bg/SHOUTAO_2018-12-07_19-46-04.jpg",
+    "./bg/SHOUTAO_2018-12-07_19-46-17.jpg",
+    "./bg/SHOUTAO_2018-12-07_19-46-30.jpg",
+    "./bg/SHOUTAO_2018-12-07_19-46-51.jpg",
+    "./bg/SHOUTAO_2018-12-07_19-47-02.jpg",
+    "./bg/SHOUTAO_2018-12-07_19-47-11.jpg",
+    "./bg/SHOUTAO_2018-12-07_19-47-19.jpg",
+    "./bg/WechatIMG1020.jpg",
+    "./bg/WechatIMG1021.jpg",
+    "./bg/WechatIMG1022.jpg",
+    "./bg/WechatIMG1023.jpg",
+    "./bg/WechatIMG1024.jpg",
+    "./bg/WechatIMG1025.jpg",
+    "./bg/WechatIMG1026.jpg",
+    "./bg/WechatIMG1027.jpg",
+    "./bg/WechatIMG1028.jpg",
+    "./bg/WechatIMG1029.jpg",
+    "./bg/WechatIMG1030.jpg",
+    "./bg/WechatIMG1031.jpg",
+    "./bg/WechatIMG1032.jpg",
+    "./bg/WechatIMG1033.jpg",
+    "./bg/WechatIMG1034.jpg",
+    "./bg/WechatIMG1035.jpg"
   ]
   fjList = [
-    './fj/t-fj-1.png',
+    './fj/f-fj-1.png',
     './fj/f-fj-2.png',
     './fj/f-fj-3.png',
     './fj/f-fj-4.png',
+    './fj/f-fj-5.png',
+    './fj/f-fj-6.png',
   ]
   pats = [
     './pat/dog.png',
   ]
-
-  function createCan([bg, fj, dog]) {
-    const c = document.createElement('canvas')
-    // const c = document.querySelector('#can')
-    const ctx = c.getContext('2d');
-    c.width = W
-    c.height = H
-    const x = random(0.1 * W, 0.8 * W)
-    const y = random(0.4 * H, 0.6 * H)
-    const FH = (FW * fj.height / fj.width)
-    ctx.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width, bg.height);
-    ctx.drawImage(fj, 0, 0, fj.width, fj.height, x, y, FW, FH);
-    if (dog) {
-      ctx.drawImage(dog, 0, 0, dog.width, dog.height, x - 0.5 * FW, y + 0.4 * FH, 0.7 * FW, 0.7 * (FW * dog.height /
-        dog.width));
-    }
-    return c
-  }
-
-  function random(lower, upper) {
-    return Math.floor(Math.random() * (upper - lower + 1)) + lower;
-  }
-
-  function getImgs() {
-    const bgLen = bgList.length - 1
-    const fjLen = fjList.length - 1
-    hasDog = random(0, 1) > 0.5
-    const imgs = [
-      bgList[random(0, bgLen)],
-      fjList[random(0, fjLen)],
-    ]
-    if (hasDog) {
-      imgs.push(pats[0])
-    }
-    return imgs
-  }
-
-  function getImgPrms(url) {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.onload = () => {
-        console.log('resolve')
-        resolve(img);
-      };
-      img.onerror = (err) => {
-        console.log('reject')
-        reject(err);
-      };
-      img.src = url;
-    })
-  }
-
-  function generateCard(re) {
-    const imgGroup = getImgs()
-
-    Promise.all(imgGroup.map((imgUrl) => getImgPrms(imgUrl))).then(([bg, fj, dog]) => {
-      const mergedCan = createCan([bg, fj, dog])
-      re.src = mergedCan.toDataURL('image/png');
-    })
-  }
+  let isFetching = false
 
   window.addEventListener('load', () => {
     const reImg = document.querySelector("#re")
     const roll = document.querySelector("#roll")
     const down = document.querySelector("#download")
+    const block = document.querySelector("#block")
+
+    function createCan([bg, fj, dog]) {
+      const c = document.createElement('canvas')
+      // const c = document.querySelector('#can')
+      const ctx = c.getContext('2d');
+      c.width = W
+      c.height = H
+      const x = random(0.1 * W, 0.8 * W)
+      const y = random(0.4 * H, 0.6 * H)
+      const FH = (FW * fj.height / fj.width)
+      ctx.drawImage(bg, 0, 0, bg.width, bg.height, 0, 0, bg.width, bg.height);
+      ctx.drawImage(fj, 0, 0, fj.width, fj.height, x, y, FW, FH);
+      if (dog) {
+        ctx.drawImage(dog, 0, 0, dog.width, dog.height, x - 0.5 * FW, y + 0.4 * FH, 0.7 * FW, 0.7 * (FW * dog.height /
+          dog.width));
+      }
+      return c
+    }
+
+    function random(lower, upper) {
+      return Math.floor(Math.random() * (upper - lower + 1)) + lower;
+    }
+
+    function getImgs() {
+      const bgLen = bgList.length - 1
+      const fjLen = fjList.length - 1
+      hasDog = random(0, 1) > 0.5
+      const imgs = [
+        bgList[random(0, bgLen)],
+        fjList[random(0, fjLen)],
+      ]
+      if (hasDog) {
+        imgs.push(pats[0])
+      }
+      return imgs
+    }
+
+    function getImgPrms(url) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => {
+          resolve(img);
+        };
+        img.onerror = (err) => {
+          reject(err);
+        };
+        img.src = url;
+      })
+    }
+
+    function generateCard(re) {
+      isFetching = true
+      block.className = 'show'
+      const imgGroup = getImgs()
+
+      Promise.all(imgGroup.map((imgUrl) => getImgPrms(imgUrl))).then(([bg, fj, dog]) => {
+        const mergedCan = createCan([bg, fj, dog])
+        re.src = mergedCan.toDataURL('image/png');
+        block.className = ''
+      })
+    }
+
     roll.addEventListener('click', () => {
       if (!inited) {
-        document.querySelector('p').className='show'
+        document.querySelector('p').className = 'show'
       }
       generateCard(reImg)
     })
   })
-
 </script>
 
 </html>
